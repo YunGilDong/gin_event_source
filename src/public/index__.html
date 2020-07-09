@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script type="text/javascript">
+        $(function () {
+          var evsrc = new EventSource("/events")
+          evsrc.onmessage = function (ev) {
+            var data = ev.data
+            $("#log > ul").append("<li>" + data + "</li>")
+          }
+          evsrc.onerror = function (ev) {
+            console.log("readyState = " + ev.currentTarget.readyState)
+          }
+        })
+      </script>
+</body>
+</html>
